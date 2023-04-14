@@ -1,4 +1,16 @@
+import { Nunito } from '@next/font/google';
 import './globals.css'
+import Navbar from './components/navbar/Navbar';
+import RegisterModal from './components/modals/RegisterModal';
+
+export const metadata = {
+  title: 'Go Electrical Us',
+  description: 'Salut'
+}
+
+const font = Nunito({
+  subsets: ["latin"]
+});
 
 export default function RootLayout({
   children,
@@ -12,7 +24,11 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body className={font.className}>
+        <RegisterModal />
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
