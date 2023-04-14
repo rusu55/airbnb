@@ -8,6 +8,7 @@ import {FieldValues, SubmitHandler, useForm} from 'react-hook-form';
 
 import userRegisterModal from '../../hooks/userRegisterModal';
 import Modal from './Modal';
+import Heading from '../Heading';
 
 const RegisterModal = () => {
   const registerModal = userRegisterModal();
@@ -28,8 +29,14 @@ const RegisterModal = () => {
     setIsLoading(true)
     axios.post('/api/register', data).then(()=> {registerModal.onClose()}).catch((error) => { console.log(error)}).finally(() =>{ setIsLoading(false)})
   }
+
+  const bodyContent = (<div className="flex flex-col gap-4">
+    <Heading />
+  </div>)    
+  
+
   return (
-    <Modal disabled={isLoading} isOpen={registerModal.isOpen} title='Register' actionLabel='Continue' onClose={registerModal.onClose} onSubmit={handleSubmit(onSubmit)} />
+    <Modal disabled={isLoading} isOpen={registerModal.isOpen} title='Register' actionLabel='Continue' onClose={registerModal.onClose} onSubmit={handleSubmit(onSubmit)} body={bodyContent} />
   )
 }
 
